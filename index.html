@@ -1,0 +1,595 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bharathapuzha | Web GIS Portal</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f8f5;
+    color: #263b35;
+}
+
+/* NAVIGATION */
+
+nav {
+    background: #073b35;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 22px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #a9e7c5;
+}
+
+/* HERO SECTION */
+
+.hero {
+    height: 90vh;
+    background:
+    linear-gradient(rgba(0,35,30,.48),
+    rgba(0,35,30,.65)),
+    url('https://www.keralatourism.org/images/picture/large/Thrithala_Village_Palakkad_2730.jpg');
+
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 30px;
+}
+
+.hero-content h1 {
+    font-size: clamp(38px, 6vw, 68px);
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 19px;
+    max-width: 750px;
+    line-height: 1.7;
+}
+
+.hero button {
+    margin-top: 28px;
+    padding: 14px 30px;
+    background: #c5e8d1;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.hero button:hover {
+    background: white;
+}
+
+/* COMMON SECTIONS */
+
+section {
+    padding: 75px 8%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    color: #075346;
+    font-size: 34px;
+    margin-bottom: 12px;
+}
+
+.section-title p {
+    color: #60756d;
+}
+
+/* ABOUT */
+
+.about {
+    background: white;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: center;
+}
+
+.about-content img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px #0002;
+}
+
+.about-text {
+    line-height: 1.9;
+    font-size: 16px;
+}
+
+/* GEOGRAPHICAL FACTS */
+
+.facts {
+    background: #e9f3ed;
+}
+
+.fact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.fact {
+    background: white;
+    padding: 28px 15px;
+    border-radius: 13px;
+    text-align: center;
+    box-shadow: 0 4px 15px #0001;
+}
+
+.fact h3 {
+    color: #08765c;
+    font-size: 29px;
+    margin-bottom: 10px;
+}
+
+.fact p {
+    color: #52665e;
+}
+
+/* GALLERY */
+
+.gallery {
+    background: white;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 13px;
+    transition: .4s;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.035);
+}
+
+/* GIS MAP SECTION */
+
+.map-section {
+    background: #e9f3ed;
+}
+
+.map-description {
+    text-align: center;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: auto auto 30px;
+}
+
+.map-frame {
+    width: 100%;
+    height: 680px;
+    border: 5px solid white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px #0002;
+    background: white;
+}
+
+.map-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.map-button {
+    display: block;
+    width: fit-content;
+    margin: 25px auto 0;
+    padding: 14px 30px;
+    background: #075346;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+}
+
+/* CONTACT */
+
+.contact {
+    background: #073b35;
+    color: white;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+.contact p {
+    line-height: 2;
+    font-size: 17px;
+}
+
+.contact a {
+    color: #a9e7c5;
+    text-decoration: none;
+}
+
+/* FOOTER */
+
+footer {
+    background: #032a25;
+    color: white;
+    text-align: center;
+    padding: 22px;
+    font-size: 13px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 768px) {
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 5px;
+        font-size: 12px;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        height: 75vh;
+    }
+
+    .map-frame {
+        height: 500px;
+    }
+
+    section {
+        padding: 55px 6%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <div class="logo">NILA | WEB GIS</div>
+
+    <div>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#geography">Geography</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#map">Interactive Map</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+
+<!-- HOME -->
+
+<div class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>BHARATHAPUZHA</h1>
+
+        <p>
+        Discover the geographical, ecological and cultural
+        landscape of Nila – one of Kerala's most significant rivers.
+        Explore the river basin through Geographic Information Systems.
+        </p>
+
+        <button onclick="document.getElementById('map').scrollIntoView()">
+            Explore Interactive Map
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ABOUT -->
+
+<section class="about" id="about">
+
+    <div class="section-title">
+        <h2>About Bharathapuzha</h2>
+        <p>The lifeline of the Malabar region</p>
+    </div>
+
+    <div class="about-content">
+
+        <img
+        src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Evening_sight_of_Bharathappuzha.jpg"
+        alt="Bharathapuzha river at sunset">
+
+        <div class="about-text">
+
+            <p>
+            Bharathapuzha, popularly known as Nila,
+            is the second-longest river in Kerala after
+            the Periyar. Originating in the Anaimalai Hills
+            of the Western Ghats, the river flows westward
+            through Tamil Nadu and Kerala before draining
+            into the Arabian Sea at Ponnani.
+            </p>
+
+            <br>
+
+            <p>
+            The river basin extends across Palakkad,
+            Thrissur and Malappuram districts of Kerala
+            and parts of Tamil Nadu. It plays an important
+            role in agriculture, irrigation, settlement
+            development, biodiversity and the cultural
+            landscape of the region.
+            </p>
+
+            <br>
+
+            <p>
+            Bharathapuzha is not merely a river system;
+            it is an important geographical and cultural
+            landscape that supports human and ecological
+            systems.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- GEOGRAPHICAL INFORMATION -->
+
+<section class="facts" id="geography">
+
+    <div class="section-title">
+
+        <h2>Geographical Profile</h2>
+
+        <p>Important geographical characteristics of the river basin</p>
+
+    </div>
+
+    <div class="fact-grid">
+
+        <div class="fact">
+            <h3>209 km</h3>
+            <p>Main river length</p>
+        </div>
+
+        <div class="fact">
+            <h3>6,186 km²</h3>
+            <p>Total drainage basin area</p>
+        </div>
+
+        <div class="fact">
+            <h3>Western Ghats</h3>
+            <p>Source region – Anaimalai Hills</p>
+        </div>
+
+        <div class="fact">
+            <h3>Arabian Sea</h3>
+            <p>Final destination</p>
+        </div>
+
+        <div class="fact">
+            <h3>Westward</h3>
+            <p>General drainage direction</p>
+        </div>
+
+        <div class="fact">
+            <h3>Nila</h3>
+            <p>Popular traditional name</p>
+        </div>
+
+    </div>
+
+    <br><br>
+
+    <div class="about-text">
+
+        <h3>Major Tributaries</h3>
+
+        <p>
+        The important tributaries include Gayathripuzha,
+        Kannadipuzha (Chitturpuzha), Kalpathipuzha
+        and Thuthapuzha.
+        </p>
+
+        <br>
+
+        <h3>Geographical Significance</h3>
+
+        <p>
+        • Supports agricultural activities and irrigation.<br>
+        • Influences settlement patterns and regional development.<br>
+        • Provides freshwater and ecological habitats.<br>
+        • Contributes to the cultural heritage of Kerala.<br>
+        • Maintains important riverine and riparian ecosystems.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- IMAGE GALLERY -->
+
+<section class="gallery" id="gallery">
+
+    <div class="section-title">
+
+        <h2>River Landscape Gallery</h2>
+
+        <p>Explore the scenic landscape of Bharathapuzha</p>
+
+    </div>
+
+    <div class="gallery-grid">
+
+        <img
+        src="https://www.keralatourism.org/images/picture/large/Thrithala_Village_Palakkad_2730.jpg"
+        alt="Bharathapuzha at Thrithala">
+
+        <img
+        src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Evening_sight_of_Bharathappuzha.jpg"
+        alt="River at sunset">
+
+        <img
+        src="https://kerala.me/wp-content/uploads/2015/12/Bharathapuzha.jpg"
+        alt="Bharathapuzha sandy riverbank">
+
+        <img
+        src="https://img.onmanorama.com/content/dam/mm/en/news/kerala/images/2019/10/22/bharathapuzha-river-kerala.jpg/photos/16x9/photo.jpg"
+        alt="Boats on Bharathapuzha">
+
+    </div>
+
+</section>
+
+
+<!-- INTERACTIVE WEB GIS -->
+
+<section class="map-section" id="map">
+
+    <div class="section-title">
+
+        <h2>Interactive Bharathapuzha Web GIS</h2>
+
+        <p>Explore the spatial characteristics of the river basin</p>
+
+    </div>
+
+    <div class="map-description">
+
+        <p>
+        This interactive Geographic Information System
+        provides a spatial platform to explore the
+        Bharathapuzha river landscape. Navigate the map,
+        zoom into locations and examine the mapped
+        geographical features.
+        </p>
+
+    </div>
+
+    <div class="map-frame">
+
+        <iframe
+        src="https://fathimashahanain-hue.github.io/BARATHAPUZHA-WEB-GIS-/"
+        title="Interactive Bharathapuzha Web GIS"
+        loading="lazy"
+        allowfullscreen>
+        </iframe>
+
+    </div>
+
+    <a class="map-button"
+    href="https://fathimashahanain-hue.github.io/BARATHAPUZHA-WEB-GIS-/"
+    target="_blank">
+
+        Open Full Interactive Map ↗
+
+    </a>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+    <h2>Contact Information</h2>
+
+    <p>
+    Web GIS Project & Geographical Information Portal
+    </p>
+
+    <br>
+
+    <p><strong>Developed by:</strong> Fathima Shahana</p>
+
+    <p>
+    <strong>Email:</strong>
+    <a href="mailto:fathimashana.in@gmail.com">
+    fathimashana.in@gmail.com
+    </a>
+    </p>
+
+    <br>
+
+    <p>
+    Department of Geography<br>
+    Geographical Information Systems Project
+    </p>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 Bharathapuzha Web GIS Portal |
+    Designed by Fathima Shahana
+
+</footer>
+
+</body>
+</html>
